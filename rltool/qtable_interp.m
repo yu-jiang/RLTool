@@ -1,8 +1,11 @@
-classdef qtable < handle
+classdef qtable_interp < handle
+    
+    % Q table with interpolation
     
     % defining the data 
     properties (SetAccess = protected)
         Table     % Main q table   
+        Actor     % mapping: statevalue -> actionvalue
         StateGrid    rlstate
         ActionGrid   rlaction
     end
@@ -21,6 +24,7 @@ classdef qtable < handle
             this.StateGrid   = stategrid;
             this.ActionGrid  = actiongrid;
             this.Table = zeros(this.StateGrid.Length, this.ActionGrid.Length);
+            this.Actor = zeros(this.StateGrid.Length, 1);
         end        
         
         % method to update Q table
@@ -68,6 +72,8 @@ classdef qtable < handle
             state_idx = this.StateGrid.getIndex(statevalue);
             [~, action_idx] = max(this.Table(state_idx, :));
             action = this.ActionGrid.getValue(action_idx);
+            
+            action = interp1(stateIndex,v,xq)
         end
     end
 end

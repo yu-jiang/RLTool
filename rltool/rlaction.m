@@ -25,11 +25,6 @@ classdef rlaction < handle
                 actionafullidx(ct) = localgetindex(this.Adata{ct}, actionvalue(ct));
             end
             % convert to linear indexing
-%             if numel(this.Size) == 1
-%                 actionIdx = actionafullidx{1};
-%             else
-%                 actionIdx = sub2ind(this.Size, actionafullidx{:});
-%             end
             actionIdx = sub2ind2(this.Size, actionafullidx); 
         end        
         

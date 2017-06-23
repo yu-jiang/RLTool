@@ -15,5 +15,4 @@ for ct = 1:200
     [snew, r] = env.step(a);
     qt.update(s, a, snew, r);     
     s = snew;   
-    qt.Table;
 end
